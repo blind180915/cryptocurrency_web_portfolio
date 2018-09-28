@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CurrencyMapper">
+    <insert id="bithumbAdd" parameterType="arraylist">
+        insert all
+        <foreach item="item" index="index" collection="list">
+			into bithumb (bithumb_pk, currency, opening_price,
+						  closing_price, min_price, max_price, average_price,
+						  units_traded, volume_1day, volume_7day, buy_price, 
+						  sell_price, fluctate_24H, fluctate_rate_24H) 
+			values (#{item.bithumb_pk}, #{item.currency}, #{item.opening_price},
+					#{item.closing_price}, #{item.min_price}, #{item.max_price}, #{item.average_price},
+					#{item.units_traded}, #{item.volume_1day}, #{item.volume_7day}, #{item.buy_price}, 
+					#{item.sell_price}, #{item.fluctate_24H}, #{item.fluctate_rate_24H})
+		</foreach>
+		select *
+		from dual
+     </insert>
+     
+     <insert id="upbitAdd" parameterType="arraylist">
+        insert all
+        <foreach item="item" index="index" collection="list">
+			into upbit (upbit_pk, market, opening_price, high_price,
+			 			low_price, trade_price, prev_closing_price, change, 
+			 			change_price, change_rate, signed_change_price,
+			 			signed_change_rate, trade_volume, acc_trade_price,
+			 			acc_trade_price_24h, acc_trade_volume, acc_trade_volume_24h) 
+			values (#{item.upbit_pk}, #{item.market},
+					#{item.opening_price}, #{item.high_price}, #{item.low_price}, #{item.trade_price},
+					#{item.prev_closing_price}, #{item.change}, #{item.change_price}, #{item.change_rate}, 
+					#{item.signed_change_price}, #{item.signed_change_rate}, #{item.trade_volume},
+					#{item.acc_trade_price}, #{item.acc_trade_price_24h}, #{item.acc_trade_volume},
+					#{item.acc_trade_volume_24h})
+		</foreach>
+		select *
+		from dual
+     </insert>
+</mapper>
