@@ -9,6 +9,8 @@
 
 	<mvc:annotation-driven/>
 	<mvc:default-servlet-handler />
+	
+	<mvc:view-controller path="/" view-name="home" />
 
 	<!-- JSP 전담 ViewResolver -->
 	<bean
