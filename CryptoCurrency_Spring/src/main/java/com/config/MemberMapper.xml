@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+
+
+	<select id="idSearch" resultType="string" parameterType="Member">
+		select userid
+		from member
+		where username=#{username} and phone1=#{phone1} and phone2=#{phone2} and
+		phone3=#{phone3}
+	</select>
+
+
+
+	<update id="memberUpdate" parameterType="Member">
+		update member
+		set post = #{post},
+		addr1 = #{addr1},
+		addr2 = #{addr2},
+		phone1 = #{phone1},
+		phone2 = #{phone2},
+		phone3 = #{phone3},
+		email1 = #{email1},
+		email2 = #{email2}
+		where userid = #{userid}
+	</update>
+
+
+
+
+
+	<select id="myPage" resultType="Member" parameterType="string">
+		select userid,passwd,username,post,addr1,addr2,
+		phone1,phone2,phone3,email1,email2
+		from member
+		where userid=#{userid}
+	</select>
+
+
+
+
+
+
+
+	<!-- <select id="login" resultType="Member" parameterType="Login">
+		select userid,passwd,username,post,addr1,addr2,
+		phone1,phone2,phone3,email1,email2
+		from member
+		where userid=#{userid} and passwd=#{passwd}
+
+	</select> -->
+
+
+
+
+
+	<insert id="memberAdd" parameterType="Member">
+		insert into member (email, full_name, passwd)
+		values ( #{email}, #{full_name}, #{passwd})
+	</insert>
+
+
+	<select id="idCheck" parameterType="string" resultType="int">
+		select count(*)
+		from member
+		where userid = #{userid}
+	</select>
+
+
+</mapper>

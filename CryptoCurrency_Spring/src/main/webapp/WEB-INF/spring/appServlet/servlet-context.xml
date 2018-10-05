@@ -10,7 +10,7 @@
 	<mvc:annotation-driven/>
 	<mvc:default-servlet-handler />
 	
-	<mvc:view-controller path="/" view-name="home" />
+	<mvc:view-controller path="/" view-name="main" />
 
 	<!-- JSP 전담 ViewResolver -->
 	<bean
@@ -19,5 +19,5 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- <context:component-scan base-package="com.*" /> -->
+	<context:component-scan base-package="com.*" />
 </beans>

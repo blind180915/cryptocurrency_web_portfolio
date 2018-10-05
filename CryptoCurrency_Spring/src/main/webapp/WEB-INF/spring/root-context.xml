@@ -3,8 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
@@ -13,11 +19,11 @@
 		location="classpath:com/config/jdbc.properties" />
 
 	<bean id="dataSource"
-		class="org.apache.commons.dbcp2.BasicDataSource">
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driver}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.xxx}" />
+		<property name="password" value="${jdbc.passwd}" />
 	</bean>
 
 	<!-- transaction 처리 -->
@@ -34,12 +40,14 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/config/CurrencyMapper.xml</value>
+				<value>classpath:com/config/MemberMapper.xml</value>
 			</list>
 		</property>
 		<property name="typeAliases">
 			<list>
 				<value>com.dto.Bithumb</value>
 				<value>com.dto.Upbit</value>
+				<value>com.dto.Member</value>
 			</list>
 		</property>
 		<property name="dataSource" ref="dataSource" />
