@@ -44,16 +44,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 
-	<!-- <select id="login" resultType="Member" parameterType="Login">
-		select userid,passwd,username,post,addr1,addr2,
-		phone1,phone2,phone3,email1,email2
+	<select id="login" resultType="Member" parameterType="Login">
+		select email, full_name, passwd
 		from member
-		where userid=#{userid} and passwd=#{passwd}
+		where email=#{email} and passwd=#{passwd}
 
-	</select> -->
-
-
-
+	</select>
 
 
 	<insert id="memberAdd" parameterType="Member">

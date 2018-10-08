@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dto.Login;
 import com.dto.Member;
 import com.service.MemberService;
 
@@ -17,9 +19,14 @@ public class MemberController {
 	
 	@RequestMapping(value="/memberAdd", method=RequestMethod.POST)
 	@CrossOrigin	// cross domain 해결
-	public String memberAdd(@RequestBody Member member) {
-		System.out.println(member);
+	public @ResponseBody void memberAdd(@RequestBody Member member) {
 		int n = service.memberAdd(member);
-		return "/";
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@CrossOrigin	// cross domain 해결
+	public @ResponseBody Member login(@RequestBody Login login) {
+		Member member = service.login(login);
+		return member;
 	}
 }

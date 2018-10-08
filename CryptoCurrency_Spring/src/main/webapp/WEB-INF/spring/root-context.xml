@@ -48,6 +48,7 @@
 				<value>com.dto.Bithumb</value>
 				<value>com.dto.Upbit</value>
 				<value>com.dto.Member</value>
+				<value>com.dto.Login</value>
 			</list>
 		</property>
 		<property name="dataSource" ref="dataSource" />
