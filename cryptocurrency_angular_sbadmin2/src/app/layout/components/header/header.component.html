@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color:#153579;">
+    <a class="navbar-brand" href="#">JHONBER </a>
+    <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
+        <i class="fa fa-bars text-muted" aria-hidden="true"></i>
+    </button>
+    <div class="collapse navbar-collapse">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="{{ 'Search' | translate }}" >
+        </form>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="javascript:void(0)" class="nav-link mt-1"
+                    style="padding: 0.375rem 1rem !important; border-color: #999;"
+                    (click)="rltAndLtr()"
+                >
+                    RTL/LTR
+                </a>
+            </li> &nbsp;
+            <li class="nav-item" *ngIf=!isLogin>
+                <a [routerLink]="['/login']" class="nav-link mt-1"
+                    style="padding: 0.375rem 1rem !important; border-color: #999;"
+                >
+                    로그인
+                </a>
+            </li> &nbsp;
+            <li class="nav-item" *ngIf=!isLogin>
+                <a [routerLink]="['/signup']" class="nav-link mt-1"
+                    style="padding: 0.375rem 1rem !important; border-color: #999;"
+                >
+                    회원가입
+                </a>
+            </li> &nbsp;
+            <li class="nav-item dropdown" ngbDropdown  *ngIf=isLogin>
+                <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+                    <i class="fa fa-user"></i> {{full_name}}님! <b class="caret"></b>
+                </a>
+                <div class="dropdown-menu-right" ngbDropdownMenu>
+                    <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}
+                    </a>
+                    <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}
+                    </a>
+                    <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}
+                    </a>
+                    <a class="dropdown-item" (click)="onLoggedout()">
+                        <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

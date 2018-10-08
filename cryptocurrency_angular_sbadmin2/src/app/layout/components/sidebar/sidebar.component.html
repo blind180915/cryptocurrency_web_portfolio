@@ -1,0 +1,17 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}" style="background-color: #040d27;">
+    <div class="list-group">
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item" style="background-color: #040d27;">
+            <span>{{ '현재 시세' | translate }}</span>
+        </a>
+        <a routerLink="/charts" [routerLinkActive]="['router-link-active']" class="list-group-item" style="background-color: #040d27;">
+            <span>{{ '정보 게시판' | translate }}</span>
+        </a>
+        <a routerLink="/tables" [routerLinkActive]="['router-link-active']" class="list-group-item" style="background-color: #040d27;">
+            <span>{{ '내 관심 종목' | translate }}</span>
+        </a>
+    </div>
+    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()" style="background-color: #040d27;">
+        <i class="fa fa-fw fa-angle-double-left"></i>&nbsp;
+        <span>{{ 'Collapse Sidebar' | translate }}</span>
+    </div>
+</nav>
