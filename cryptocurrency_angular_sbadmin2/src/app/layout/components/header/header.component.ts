@@ -61,6 +61,7 @@ export class HeaderComponent implements OnInit {
         this.isLogin = false;
         this.full_name = '';
         localStorage.removeItem('login');
+        alert('로그아웃 되었습니다.');
     }
 
     changeLang(language: string) {

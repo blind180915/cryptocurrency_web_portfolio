@@ -1,63 +1,61 @@
 <div [@routerTransition]>
-    <h2 class="text-muted">Dashboard <small>Statistics Overview</small></h2>
-    <div class="row">
-        <div class="col-md-12">
-            <ngb-carousel>
-                <ng-template ngbSlide *ngFor="let slider of sliders">
-                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
-                    <div class="carousel-caption">
-                        <h3>{{slider.label}}</h3>
-                        <p>{{slider.text}}</p>
-                    </div>
-                </ng-template>
-            </ngb-carousel>
-        </div>
-    </div>
+    <h2 class="page-header">현재 시세</h2>
     <hr>
     <div class="row">
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
+        <div class="col-xl-6">
+            <app-stat [bgClass]="'primary'" [image]="'assets/images/upbit.png'" [color]="'#327ab7'" [label]="'Upbit'"></app-stat>
         </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
+        
+        <div class="col-xl-6">
+            <app-stat [bgClass]="'warning'" [image]="'assets/images/bithumb.png'" [color]="'#f0ad4e'" [label]="'Bithumb'"></app-stat>
         </div>
     </div>
-    <hr />
-    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
-    <hr />
+    <hr style="visibility: hidden">
     <div class="row">
-        <div class="col-lg-8">
-            <div class="card card-default">
-                <div class="card-header">
-                    <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+        <div class="col-xl-6">
+            <div class="card mb-3">
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="color:#327ab7">통화</th>
+                            <th style="color:#327ab7">현재가 (₩)</th>
+                            <th style="color:#327ab7">변동(24시간)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let b of currencyBithumb">
+                                <td style="font-weight: bold">{{b.currency}}</td>
+                                <td>{{b.price}}</td>
+                                <td [style.color]=b.color>{{b.change_rate}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- /.card-header -->
-                <app-timeline></app-timeline>
-                <!-- /.card-body -->
             </div>
-            <!-- /.card -->
         </div>
-        <!-- /.col-lg-8 -->
-        <div class="col-lg-4">
-            <div class="card card-default mb-3">
-                <div class="card-header">
-                    <i class="fa fa-bell fa-fw"></i> Notifications card
-                </div>
-                <!-- /.card-header -->
-                <app-notification></app-notification>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+        <div class="col-xl-6">
+            <div class="card mb-3">
 
-            <app-chat></app-chat>
-            <!-- /.card .chat-card -->
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th style="color:#f0ad4e">통화</th>
+                            <th style="color:#f0ad4e">현재가 (₩)</th>
+                            <th style="color:#f0ad4e">변동(24시간)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let u of currencyUpbit">
+                                <td style="font-weight: bold">{{u.currency}}</td>
+                                <td>{{u.price}}</td>
+                                <td [style.color]=u.color>{{u.change_rate}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <!-- /.col-lg-4 -->
     </div>
 </div>

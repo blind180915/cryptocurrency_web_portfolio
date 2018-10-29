@@ -28,8 +28,10 @@ export class LoginComponent implements OnInit {
                 this.warningText = '아이디 또는 비밀번호가 틀립니다.'
             } else {
                 localStorage.setItem('login', res['full_name']);
-                location.href = '/dashboard';
+                localStorage.setItem('login_email', res['email']);
+                location.href = '/';
             }
+            console.log(res);
         }, error => { console.log(error)});
     }
 }

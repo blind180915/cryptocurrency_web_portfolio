@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-	<insert id="memberAdd" parameterType="Member">
+	<insert id="addMember" parameterType="Member">
 		insert into member (email, full_name, passwd)
 		values ( #{email}, #{full_name}, #{passwd})
 	</insert>

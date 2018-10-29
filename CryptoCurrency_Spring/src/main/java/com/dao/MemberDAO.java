@@ -12,8 +12,8 @@ public class MemberDAO {
 	@Autowired
 	SqlSessionTemplate template;
 	
-	public int memberAdd(Member member) {
-		int n = template.insert("MemberMapper.memberAdd", member);
+	public int addMember(Member member) {
+		int n = template.insert("MemberMapper.addMember", member);
 		return n;
 	}
 	

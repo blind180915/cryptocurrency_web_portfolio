@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Color } from 'ng2-charts';
 
 @Component({
     selector: 'app-stat',
@@ -7,10 +8,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class StatComponent implements OnInit {
     @Input() bgClass: string;
-    @Input() icon: string;
-    @Input() count: number;
+    @Input() image: string;
+    @Input() color: string;
     @Input() label: string;
-    @Input() data: number;
+
     @Output() event: EventEmitter<any> = new EventEmitter();
 
     constructor() {}

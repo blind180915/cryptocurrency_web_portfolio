@@ -17,10 +17,10 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 	
-	@RequestMapping(value="/memberAdd", method=RequestMethod.POST)
+	@RequestMapping(value="/addMember", method=RequestMethod.POST)
 	@CrossOrigin	// cross domain 해결
-	public @ResponseBody void memberAdd(@RequestBody Member member) {
-		int n = service.memberAdd(member);
+	public @ResponseBody void addMember(@RequestBody Member member) {
+		service.addMember(member);
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)

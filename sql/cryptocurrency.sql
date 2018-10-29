@@ -53,3 +53,21 @@ create table interest_item (
   PRIMARY KEY (email, currency)
 );
 
+create table information_board( 
+  num       INT           NOT NULL AUTO_INCREMENT,
+  title     VARCHAR(100)   NOT NULL,
+  email     VARCHAR(20)   NOT NULL,
+  readCount INT           DEFAULT 0,
+  writeday  DATETIME      DEFAULT CURRENT_TIMESTAMP,
+  content   VARCHAR(1000) NOT NULL,
+  
+  PRIMARY KEY (num)
+);
+
+ALTER TABLE interest_item
+ADD FOREIGN KEY (email) REFERENCES member(email);
+
+ALTER TABLE information_board
+ADD FOREIGN KEY (email) REFERENCES member(email);
+
+select constraint_name, constraint_type from information_schema.table_constraints;

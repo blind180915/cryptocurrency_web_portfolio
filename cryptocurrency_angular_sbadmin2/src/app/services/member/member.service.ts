@@ -14,7 +14,7 @@ export class MemberService {
   // add member
   add(member:Member) {
     
-    var url = "http://localhost:8090/cryptocurrency/memberAdd";
+    var url = "http://localhost:8090/addMember";
 
     const httpOptions = {
       headers: new HttpHeaders(
@@ -29,7 +29,7 @@ export class MemberService {
 
   // login
   login(login:Login) {
-    var url = "http://localhost:8090/cryptocurrency/login";
+    var url = "http://localhost:8090/login";
 
     const httpOptions = {
       headers: new HttpHeaders(

@@ -10,7 +10,10 @@
 	<mvc:annotation-driven/>
 	<mvc:default-servlet-handler />
 	
-	<mvc:view-controller path="/" view-name="main" />
+	<mvc:view-controller path="/" view-name="home" />
+
+	<mvc:resources location="/WEB-INF/js/" 					mapping="/*"/>
+	<mvc:resources location="/WEB-INF/js/assets/" 			mapping="/assets/**"/>
 
 	<!-- JSP 전담 ViewResolver -->
 	<bean

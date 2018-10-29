@@ -41,6 +41,7 @@
 			<list>
 				<value>classpath:com/config/CurrencyMapper.xml</value>
 				<value>classpath:com/config/MemberMapper.xml</value>
+				<value>classpath:com/config/BoardMapper.xml</value>
 			</list>
 		</property>
 		<property name="typeAliases">
@@ -49,6 +50,8 @@
 				<value>com.dto.Upbit</value>
 				<value>com.dto.Member</value>
 				<value>com.dto.Login</value>
+				<value>com.dto.CurrencyTime</value>
+				<value>com.dto.Board</value>
 			</list>
 		</property>
 		<property name="dataSource" ref="dataSource" />

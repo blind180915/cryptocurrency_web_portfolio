@@ -1,16 +1,20 @@
-<div>
-    <app-page-header [heading]="'Bootstrap Component'" [icon]="'fa-th-list'"></app-page-header>
-    <app-modal></app-modal>
-    <app-alert></app-alert>
-    <app-buttons></app-buttons>
-    <app-collapse></app-collapse>
-    <app-date-picker></app-date-picker>
-    <app-dropdown></app-dropdown>
-    <app-pagination></app-pagination>
-    <app-pop-over></app-pop-over>
-    <app-progressbar></app-progressbar>
-    <app-tabs></app-tabs>
-    <app-tooltip></app-tooltip>
-    <app-timepicker></app-timepicker>
-    <app-rating></app-rating>
+<h2 class="page-header">정보 게시판</h2>
+<hr>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3>{{board.title}}</h3><br>
+                작성자:{{board.email}} 작성일시:{{board.writedate}} 조회:{{board.readCount}}
+            </div>
+            <div class="card-body">
+                {{board.content}}
+            </div>
+            <div class="card-footer">
+                <p>
+                    <button type="button" class="btn btn-info" routerLink="/tables">목록</button>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>

@@ -12,8 +12,8 @@ public class MemberService {
 	@Autowired
 	MemberDAO dao;
 	
-	public int memberAdd (Member member) {
-		return dao.memberAdd(member);
+	public int addMember (Member member) {
+		return dao.addMember(member);
 	}
 	
 	public Member login (Login login) {

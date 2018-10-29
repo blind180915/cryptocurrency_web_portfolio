@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import { CurrencyService } from '../../services/currency/currency.service';
+import { Bithumb, Upbit, Currency, CurrencyUtil } from '../../services/currency/currency';
 
 @Component({
     selector: 'app-dashboard',
@@ -8,54 +10,68 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class DashboardComponent implements OnInit {
-    public alerts: Array<any> = [];
-    public sliders: Array<any> = [];
+    constructor(private service:CurrencyService) {
+       
+    }
+    bithumbArr:Bithumb[];
+    upbitArr:Upbit[];
+    // 화면에 보여지는 부분을 변경하기 위해서
+    currencyUtil:CurrencyUtil = new CurrencyUtil;
+    currencyBithumb:Currency[] = new Array<Currency>();
+    currencyUpbit:Currency[] = new Array<Currency>();
 
-    constructor() {
-        this.sliders.push(
-            {
-                imagePath: 'assets/images/slider1.jpg',
-                label: 'First slide label',
-                text:
-                    'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-            },
-            {
-                imagePath: 'assets/images/slider2.jpg',
-                label: 'Second slide label',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            },
-            {
-                imagePath: 'assets/images/slider3.jpg',
-                label: 'Third slide label',
-                text:
-                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-            }
-        );
-
-        this.alerts.push(
-            {
-                id: 1,
-                type: 'success',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
-            {
-                id: 2,
-                type: 'warning',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            }
-        );
+    ngOnInit() {
+        this.currentBithumb();
+        this.currentUpbit()
     }
 
-    ngOnInit() {}
+    currentBithumb() {
+        this.service.currentBithumb().subscribe(res => { 
+            var currencyArr = this.currencyUtil.currency;
+            var currencyLength = currencyArr.length;
+            var resLength = res.length
+            for(var i = 0; i < currencyLength; ++i) {
+                this.currencyBithumb.push(new Currency(this.currencyUtil.currency_kr[i], 0, 0, ''));
+                for(var j = 0; j < resLength; ++j) {
+                    if(res[j].currency.includes(currencyArr[i])) {
+                        this.currencyBithumb[i].price = res[j].closing_price;
+                        this.currencyBithumb[i].change_rate = res[j].fluctate_rate_24H;
+                        if(this.currencyBithumb[i].change_rate > 0) {
+                            this.currencyBithumb[i].color = 'blue';
+                        } else {
+                            this.currencyBithumb[i].color = 'red';
+                        }
+                        break;
+                    }
+                }
+            }
+        },error => {
+            console.log(error)
+        });
+    }
 
-    public closeAlert(alert: any) {
-        const index: number = this.alerts.indexOf(alert);
-        this.alerts.splice(index, 1);
+    currentUpbit() {
+        this.service.currentUpbit().subscribe(res => { 
+            var currencyArr = this.currencyUtil.currency;
+            var currencyLength = currencyArr.length;
+            var resLength = res.length
+            for(var i = 0; i < currencyLength; ++i) {
+                this.currencyUpbit.push(new Currency(this.currencyUtil.currency_kr[i], 0, 0, ''));
+                for(var j = 0; j < resLength; ++j) {
+                    if(res[j].market.includes(currencyArr[i])) {
+                        this.currencyUpbit[i].price = res[j].trade_price;
+                        this.currencyUpbit[i].change_rate = res[j].signed_change_rate;
+                        if(this.currencyUpbit[i].change_rate > 0) {
+                            this.currencyUpbit[i].color = 'blue';
+                        } else {
+                            this.currencyUpbit[i].color = 'red';
+                        }
+                        break;
+                    }
+                }
+            }
+        },error => {
+            console.log(error)
+        });
     }
 }
